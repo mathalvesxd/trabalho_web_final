@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Save Pets</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="icon" type="image/png" href="mdi_cat.png">
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a class="logo" href="#"><img class="logo" src="Adote Aqui!.png" alt="Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Adotar</a></li>
+            <li><a href="cadastro_gato.html">Colocar para Adoção</a></li>
+            <li><a href="perdido.html">Perdidos</a></li>
+            <li class="search-bar">
+                <input class="search-barra" type="text" placeholder="Pesquisar">
+                <a class="icon-pesquisar-a" href=""><img class="icon-pesquisar" src="magnifying-glass-solid.svg" alt=""></a>
+            </li>
+            <li class="user-name" id="userMenu" style="display: none;">
+                <!-- Verifica se o usuário está logado e exibe o nome ou o botão de deslogar -->
+                <span id="nomeUsuario"></span>
+                <ul class="mini-menu">
+                    <li><a href="#" onclick="deslogar();">Deslogar</a></li>
+                </ul>
+            </li>
+            <li class="login-icon">
+                <a href="#" onclick="verificarUsuarioLogado();"><img class="perfil" src="user-solid.svg" alt="perfil"></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <img src="Rectangle 14.png">
+        </div>
+    <div class="featured-section">
+        <div class="featured-item">
+            <img src="mdi_cat.png" alt="Imagem pequena">
+            <h2>Texto fofinho apenas para ver como vai ficar as palavras no espaço
+                <br> <br>
+                texto fofinho apenas para ver como vai ficar as palavras no espaço
+            </h2>
+        </div>
+        <div class="separator"></div>
+        <div class="featured-text">
+            <p>texto fofinho apenas para ver como vai ficar as palavras no espaçotexto fofinho apenas para ver como vai ficar as palavras no espaçotexto fofinho apenas para ver como vai ficar as palavras no espaçotexto fofinho apenas para ver como vai ficar as palavras no espaço</p>
+        </div>
+    </div>
+    <div class="image-section" id="gatinhosContainer">
+        <!-- Aqui os gatinhos cadastrados serão inseridos dinamicamente -->
+    </div>
+    
+
+    <script>
+        const gatinhosContainer = document.getElementById("gatinhosContainer");
+        const gatinhosCadastrados = JSON.parse(localStorage.getItem("gatinhosCadastrados")) || [];
+    
+        gatinhosCadastrados.forEach(gatinho => {
+            const gatinhoItem = document.createElement("div");
+            gatinhoItem.classList.add("image-item");
+            gatinhoItem.innerHTML = `
+                <a href="perfil_gatinho.html?id=${gatinho.id}">
+                    <img src="${gatinho.foto}" alt="Imagem do Gatinho">
+                </a>
+                <h3>Gato<br><br>
+                    Nome: ${gatinho.nome}<br>
+                    <br>
+                    Sexo: ${gatinho.sexo} <br><br>
+                    Idade: ${gatinho.dtNascimento}<br><br>
+                    Necessidade: ${gatinho.necessidade}<br><br>
+                    Bairro: ${gatinho.endereco}<br><br>
+                    Usuário: ${gatinho.usuario}
+                </h3>
+            `;
+            gatinhosContainer.appendChild(gatinhoItem);
+        });
+
+        const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+function verificarUsuarioLogado() {
+    if (usuarioLogado) {
+        const nomeUsuarioElement = document.getElementById("nomeUsuario");
+        const userMenu = document.getElementById("userMenu");
+        nomeUsuarioElement.textContent = `Olá, ${usuarioLogado.nome}!`;
+        userMenu.style.display = "block"; // Mostra o mini menu
+    } else {
+        window.location.href = "login.html"; // Redireciona para a página de login
+    }
+}
+
+function deslogar() {
+    localStorage.removeItem("usuarioLogado");
+    alert("Você foi deslogado com sucesso.");
+    location.reload(); // Recarrega a página para atualizar o menu
+}
+    </script>
+    
+    
+    
+</body>
+</html>

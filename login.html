@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavePets - Login</title>
+    <link rel="stylesheet" type="text/css" href="ch_style.css">
+    <link rel="icon" type="image/png" href="mdi_cat.png">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a class="logo" href="#"><img class="logo" src="Adote Aqui!.png" alt="Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Adotar</a></li>
+            <li><a href="cadastro_gato.html">Colocar para Adoção</a></li>
+            <li><a href="perdido.html">Perdidos</a></li>
+            <li class="login-icon">
+                <a href="cadastro.html"><img class="perfil" src="user-solid.svg" alt="perfil"></a>
+            </li>
+            <li class="search-bar">
+                <input class="search-barra" type="text" placeholder="Pesquisar">
+                <a class="icon-pesquisar-a" href=""><img class="icon-pesquisar" src="magnifying-glass-solid.svg" alt=""></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="form-cadastro">
+        <form id="loginForm">
+            <div  class="titulo-sub">
+                <h1 id="titulo">Login SavePets</h1>
+                <p id="subtitulo">Entre com suas credenciais</p>
+                <br>
+            </div>
+            <br>
+            <input class="imput-form" type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input class="imput-form" type="password" id="senha" name="senha" placeholder="Senha" required>
+            <br>
+            <input class="imput-form" type="submit" value="Entrar">
+            <br>
+            <a class="imput-form imput-submit" href="cadastro.html">Cadastre-se</a>
+        </form> 
+    </div>
+
+    <script>
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const senha = document.getElementById("senha").value;
+
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+            const usuarioEncontrado = usuarios.find(
+                (usuario) => usuario.email === email && usuario.senha === senha
+            );
+
+            if (usuarioEncontrado) {
+                alert("Login bem-sucedido!");
+
+                // Armazena o usuário logado no localStorage
+                localStorage.setItem("usuarioLogado", JSON.stringify(usuarioEncontrado));
+
+                // Redireciona para a página após o login bem-sucedido
+                window.location.href = "index.html"; // Substitua pelo nome da página de destino
+            } else {
+                alert("Credenciais inválidas. Por favor, verifique suas informações ou cadastre-se.");
+            }
+        });
+    </script>
+</body>
+</html>

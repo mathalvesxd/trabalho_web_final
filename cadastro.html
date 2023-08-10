@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavePets</title>
+    <link rel="stylesheet" type="text/css" href="ch_style.css">
+    <link rel="icon" type="image/png" href="mdi_cat.png">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a class="logo" href="#"><img class="logo" src="Adote Aqui!.png" alt="Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Adotar</a></li>
+            <li><a href="cadastro_gato.html">Colocar para Adoção</a></li>
+            <li><a href="perdido.html">Perdidos</a></li>
+            <li class="login-icon">
+                <a href="login.html"><img class="perfil" src="user-solid.svg" alt="perfil"></a>
+            </li>
+            <li class="search-bar">
+                <input class="search-barra" type="text" placeholder="Pesquisar">
+                <a class="icon-pesquisar-a" href=""><img class="icon-pesquisar" src="magnifying-glass-solid.svg" alt=""></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="form-cadastro">
+        <form id="cadastroForm">
+            <div  class="titulo-sub">
+                <h1 id="titulo">Cadastro SavePets</h1>
+                <p id="subtitulo">Complete suas informações</p>
+                <br>
+            </div>
+            <br>
+            <input class="imput-form" type="text" id="nome" name="nome" placeholder="Nome" required>
+            <br>
+            <input class="imput-form" type="email" id="email" name="email" placeholder="Email" required>
+            <br>
+            <input class="imput-form" type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+            <br>
+            <input class="imput-form" type="password" id="senha" name="senha" placeholder="Senha" required>
+            <br>
+            <input class="imput-form" type="password" id="confirma-senha" name="confirma-senha" placeholder="Confirmar Senha" required>
+            <br>
+            <input class="imput-form" type="submit" value="Cadastrar">
+        </form> 
+    </div>
+
+    <script>
+        const cadastroForm = document.getElementById("cadastroForm");
+
+        cadastroForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const email = document.getElementById("email").value;
+            const telefone = document.getElementById("telefone").value;
+            const senha = document.getElementById("senha").value;
+            const confirmaSenha = document.getElementById("confirma-senha").value;
+
+            if (senha !== confirmaSenha) {
+                alert("As senhas não coincidem. Por favor, tente novamente.");
+                return;
+            }
+
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            usuarios.push({ nome, email, telefone, senha });
+            localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+            alert("Cadastro realizado com sucesso!");
+            window.location.href = "login.html"; // Redirecionar para a página de login após o cadastro
+        });
+    </script>
+</body>
+</html>

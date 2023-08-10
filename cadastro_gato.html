@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro do Gatinho</title>
+    <link rel="stylesheet" type="text/css" href="cg_style.css">
+    <link rel="icon" type="image/png" href="mdi_cat.png">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a class="logo" href="#"><img class="logo" src="Adote Aqui!.png" alt="Logo"></a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html">Adotar</a></li>
+            <li><a href="cadastro_gato.html">Colocar para Adoção</a></li>
+            <li><a href="perdido.html">Perdidos</a></li>
+            <li class="login-icon">
+                <a href="login.html"><img class="perfil" src="user-solid.svg" alt="perfil"></a>
+            </li>
+            <li class="search-bar">
+                <input class="search-barra" type="text" placeholder="Pesquisar">
+                <a class="icon-pesquisar-a" href=""><img class="icon-pesquisar" src="magnifying-glass-solid.svg" alt=""></a>
+            </li>
+            <li class="user-name">
+                <!-- Verifica se o usuário está logado e exibe o nome -->
+                <span id="nomeUsuario"></span>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="form-cadastro">
+        <form onsubmit="concluirCadastro(event)">
+
+            <div>
+                <label for="nome"><strong>Nome do Gatinho:</strong></label>
+                <br>
+                <input class="imput-form" type="text" name="nome" id="nome" placeholder="Nome" required>
+            </div>
+            <label for="dt-nascimento"><strong>Data Nascimento:</strong></label>
+            <input class="imput-form"  type="date" id="birthday" name="dt-nascimento">
+            <div>
+                <label for="raca"><strong>Raça</strong></label>
+                <br>
+                <input class="imput-form" type="text" name="raca" id="raca" placeholder="Raça" required>
+            </div>
+            <div>
+                <label for="endereco"><strong>Endereço</strong></label>
+                <br>
+                <input class="imput-form" type="text" name="endereco" id="endereco" placeholder="Endereço" required>
+            </div>
+            <div class="campo" >
+                <label><strong>Tem alguma necessidade? </strong> </label>
+                <br><br>
+                <input type="radio" name="sim" value="sim">SIM
+                <input type="radio" name="nao" value="nao">NÃO
+            </div>
+            <br>
+            <div class="campo">
+                <label for="sexo"><strong>Sexo</strong></label>
+                <select class="imput-form" id="sexo">
+                    <option selected disabled value=""> Selecione </option>
+                    <option> Macho</option>
+                    <option> Fêmea </option>
+                </select>
+            </div>
+
+            <div class="campo">
+                <br>
+                <label><strong>Descrição</strong></label>
+                <textarea class="imput-form" rows="4" style="width: 26em;" id="experiencia" nome="experiencia"></textarea>
+            </div><br>
+
+            <label for="img-gato"> <strong>Selecione uma foto:</strong></label>
+            <div class="envia-foto">
+                
+                <input type="file" id="img-gato" name="img-gato" accept=".png">
+            </div><br><br>
+            
+
+            <button class="imput-form" class="botao" type="submit" onclick="concluirCadastro(event)" ><strong>Cadastrar</strong></button>
+    </form>
+    </div>
+    <script>
+        function concluirCadastro(event) {
+            event.preventDefault();
+
+            // Obtém os valores do formulário
+            const nome = document.getElementById("nome").value;
+            const dtNascimento = document.getElementById("birthday").value;
+            const raca = document.getElementById("raca").value;
+            const endereco = document.getElementById("endereco").value;
+            const necessidade = document.querySelector('input[name="sim"]:checked') ? 'Sim' : 'Não';
+            const sexo = document.getElementById("sexo").value;
+            const descricao = document.getElementById("experiencia").value;
+    
+            // Obtém a imagem selecionada pelo usuário
+            const fotoInput = document.getElementById("img-gato");
+            const foto = fotoInput.files[0]; // A primeira imagem selecionada
+    
+            // Verifica se uma imagem foi selecionada
+            if (!foto) {
+                alert("Selecione uma foto para o gatinho.");
+                return;
+            }
+
+            // Converte a imagem em uma string base64
+            const reader = new FileReader();
+            reader.onload = function () {
+                const fotoBase64 = reader.result.split(",")[1];
+    
+                // Cria um objeto com as informações do gatinho
+                const novoGatinho = {
+                    id: Date.now(),
+                    nome,
+                    dtNascimento,
+                    raca,
+                    endereco,
+                    necessidade,
+                    sexo,
+                    descricao,
+                    foto: URL.createObjectURL(foto), // URL temporária da imagem
+                    usuario: usuarioLogado.nome
+                };
+    
+                // Obtém a lista de gatinhos do Local Storage ou cria uma nova lista vazia
+                const gatinhosCadastrados = JSON.parse(localStorage.getItem("gatinhosCadastrados")) || [];
+    
+                // Adiciona o novo gatinho à lista
+                gatinhosCadastrados.push(novoGatinho);
+    
+                // Atualiza a lista de gatinhos no Local Storage
+                localStorage.setItem("gatinhosCadastrados", JSON.stringify(gatinhosCadastrados));
+    
+                // Redireciona para a página principal
+                window.location.href = "index.html";
+            }
+
+            reader.readAsDataURL(foto);
+}
+        // Verifica se o usuário está logado e atualiza o nome na barra de pesquisa
+        const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+    
+        if (usuarioLogado) {
+            const nomeUsuarioElement = document.getElementById("nomeUsuario");
+            nomeUsuarioElement.textContent = `Olá, ${usuarioLogado.nome}!`;
+        }
+        
+    </script>
+        
+    
+</body>
+</html>

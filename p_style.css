@@ -1,0 +1,212 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background: #BCECFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background: #FFFAA3;
+    align-items: center;
+    align-content: center;
+    height: 16x;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 16x;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background: #555;
+    color: white;
+}
+
+.navbar .logo {
+    float: left;
+    margin-right: 5px;
+    padding: 0px 0px;
+}
+
+.navbar .search-bar {
+    float: right;
+    margin-left: 20px;
+}
+
+.navbar .login-icon {
+    float: right;
+}
+
+.perfil{
+    width: 25px;
+    height: 16px;
+}
+
+.perfil:hover {
+    color: white;
+    background: #555;
+}
+
+.search-barra {
+    margin-top: 12px;
+    margin-right: 35px;
+    padding: 3px 25px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.search-bar {
+    height: 32px;
+}
+
+.icon-pesquisar {
+    height: 20px;
+    width: 20px;
+    display: none;
+}
+
+.perfil-pai {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.perfil-gato {
+    display: flex;
+    background-color: #f8f8f8;
+    align-items: center;
+    justify-content: left;
+    border-radius: 5px;
+    height: 600px;
+    width: 1200px;
+    box-shadow: #333;
+}
+
+.info-perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 60px;
+    height: 374;
+    width: 336;
+    padding: 10px;
+}
+
+
+.foto {
+    width: 550px;
+    margin-left: 10px;
+}
+
+p {
+    width: 414px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.contact-button {
+background-color: #A7E8D6;
+color: black;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+margin-top: 10px;
+}
+
+.adopt-button {
+background-color: #7EFF69;
+color: black;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+margin-top: 10px;
+}
+
+.contact-button:hover{
+    background-color: #A1D0D0;
+
+}
+
+.adopt-button:hover{
+    background-color: #54E86E;
+}
+
+button:hover {
+    cursor: pointer;
+}
+  
+
+
+@media (max-width: 780px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        margin: 0;
+        padding: 20px;
+        width: 35%;
+        height: 100%;
+        transform: translateX(-95%);
+    }
+
+    .navbar:hover {
+        transform: translateX(0%);
+    }
+
+    .search-barra {
+        display: none;
+    }
+
+    .icon-pesquisar {
+        display: block;
+    }
+
+    .perfil-gato {
+        display: flex;
+        flex-direction: column;
+        height: 850px;
+        width: 430px;
+    }
+
+    .foto {
+        margin-top: 20px;
+        height: 350px;
+        width: 350px;
+    }
+
+    .info-perfil {
+        height: 400px;
+        width: 400px;
+    }
+    p{
+        width: 350px;
+    }
+}
+.logo {
+    height: 48px;
+}

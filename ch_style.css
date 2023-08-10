@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    background: #BCECFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {
+    background: #FFFAA3;
+    align-items: center;
+    align-content: center;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.navbar li {
+    float: left;
+}
+
+.navbar li a {
+    display: block;
+    color: #333;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background: #555;
+    color: white;
+}
+
+.navbar .logo {
+    float: left;
+    margin-right: 5px;
+    padding: 0px 0px;
+}
+
+.navbar .search-bar {
+    float: right;
+    margin-left: 20px;
+}
+
+.navbar .login-icon {
+    float: right;
+}
+
+.perfil{
+    width: 25px;
+    height: 16px;
+}
+
+.perfil:hover {
+    color: white;
+    background: #555;
+}
+
+.search-barra {
+    margin-top: 12px;
+    margin-right: 35px;
+    padding: 3px 25px;
+    border: 1px solid black;
+    border-radius: 20px;
+    box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.75);
+}
+
+.icon-pesquisar {
+    height: 20px;
+    width: 20px;
+    display: none;
+}
+
+.search-bar {
+    height: 32px;
+}
+
+.form-cadastro {
+    display: flex;
+    justify-content: center;
+    margin: 50px;
+}
+
+
+form {
+    width: 400px;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 5px;
+}
+
+.imput-form {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+.titulo-sub {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+@media (max-width: 780px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        margin: 0;
+        padding: 20px;
+        width: 35%;
+        height: 100%;
+        transform: translateX(-95%);
+    }
+
+    .navbar:hover {
+        transform: translateX(0%);
+    }
+
+    .search-barra {
+        display: none;
+    }
+
+    .icon-pesquisar {
+        display: block;
+    }
+
+}
+.logo {
+    height: 48px;
+}
